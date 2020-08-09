@@ -1,24 +1,12 @@
-# todo-ninja
+# Vuetify Framework for Application Development
 
-## Project setup
-```
-npm install
-```
+## Building an app through watching the Net Ninja Vuetify Series (highly recommended)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This application was built by walking through the [Vuetify Playlist](https://www.youtube.com/watch?v=2uZYKcKHgU0&list=PL4cUxeGkcC9g0MQZfHwKcuB0Yswgb3gA5) by the Net Ninja
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Some elements have changed since these videos were made but, as Shaun points out, the documentation is thorough with plenty of code examples.
 
-### Lints and fixes files
-```
-npm run lint
-```
+I will continue to work on the functionality that is clearly lacking and try to get this to be really robust (as a learning experience).
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Here's the current state of my homepage:
+![Homepage](/public/hone.png)
