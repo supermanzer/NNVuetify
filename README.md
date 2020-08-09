@@ -9,4 +9,4 @@ Some elements have changed since these videos were made but, as Shaun points out
 I will continue to work on the functionality that is clearly lacking and try to get this to be really robust (as a learning experience).
 
 Here's the current state of my homepage:
-![Homepage](/public/hone.png)
+![Homepage](/public/hone.png?raw=true "Home Page")
