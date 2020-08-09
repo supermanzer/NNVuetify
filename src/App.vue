@@ -10,6 +10,10 @@
 <script>
 import NavBar from "@/components/NavBar";
 export default {
+  created() {
+    this.$store.dispatch("getProjects");
+    this.$store.dispatch("getTeam");
+  },
   name: "App",
   components: {
     NavBar,

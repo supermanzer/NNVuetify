@@ -1,5 +1,13 @@
 <template>
   <nav>
+    <v-snackbar v-model="snackbar" :timeout="4000" top color="">
+      <span class="green--text text--darken-1 font-weight-bold"
+        >Awesome! You've added a new project</span
+      >
+      <v-btn text color="success">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-snackbar>
     <v-app-bar
       app
       flat
@@ -15,14 +23,51 @@
         <span>Ninja</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <!-- DROPDOWN MENU -->
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text dark v-bind="attrs" v-on="on">
+            <v-icon left>mdi-chevron-down</v-icon>
+            <span>Menu</span>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, k) in items"
+            :key="k"
+            router
+            :to="item.route"
+          >
+            <v-list-item-title>{{ item.text }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <!-- END DROPDOWN MENU -->
       <v-btn text color="grey lighten-2">
         <span>Sign Out</span>
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app dark class="grey darken-2">
-      <v-list>
+    <v-navigation-drawer v-model="drawer" app dark class="grey darken-2 py-3">
+      <v-row class="mt-5" align="center" justify="center">
+        <v-col large="12" align="center">
+          <v-avatar size="150">
+            <img src="/avatar_images/ryan.jpeg" alt="" srcset="" />
+          </v-avatar>
+        </v-col>
+        <v-col large="12" align="center">
+          <p class="white--text subheading mt-2">
+            Supermanzer
+          </p>
+        </v-col>
+      </v-row>
+      <v-row align="center" class=" mt-4 mb-3 ">
+        <v-col align="Center">
+          <Popup @projectAdded="notifyProjectAdd" />
+        </v-col>
+      </v-row>
+      <v-list class="mt-10">
         <v-list-item-group color="blue lighten-3">
           <v-list-item
             v-for="(item, i) in items"
@@ -44,7 +89,11 @@
 </template>
 
 <script>
+import Popup from "./Popup";
 export default {
+  components: {
+    Popup,
+  },
   data() {
     return {
       drawer: false,
@@ -65,7 +114,15 @@ export default {
           route: "/team",
         },
       ],
+      snackbar: false,
+      snackText: "",
     };
+  },
+  methods: {
+    notifyProjectAdd() {
+      this.snackText = `You've added a new project!`;
+      this.snackbar = true;
+    },
   },
 };
 </script>

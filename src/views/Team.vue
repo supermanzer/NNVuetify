@@ -1,15 +1,21 @@
 <template>
   <div class="Team">
-    <h1 class="subeahding grey--text">Team</h1>
+    <v-row>
+      <h1 class="subeahding grey--text">Team</h1>
+      <v-spacer></v-spacer>
+      <AddMember @memberAdded="memberAdded" />
+    </v-row>
     <!-- <v-btn class="hidden-md-and-down">click me</v-btn> -->
     <!-- <v-btn class="hidden-md-and-up">Click Me</v-btn> -->
     <!-- <v-btn class="hidden-sm-only">Click Me</v-btn> -->
     <v-container class="my-16 fill-height">
       <v-row>
-        <v-col sm="12" md="6" lg="4" v-for="(person, i) in team" :key="i">
+        <v-col sm="6" md="4" lg="3" v-for="(person, i) in team" :key="i">
           <v-card class="text-center ma-3">
-            <v-responsive class="pt-4 gd-stuff">
-              image goes here
+            <v-responsive class="pt-4">
+              <v-avatar size="250" :rounded="false" class="grey lighten-2">
+                <img :src="person.avatar" alt="" />
+              </v-avatar>
             </v-responsive>
             <v-card-text>
               <div class="subheading">{{ person.name }}</div>
@@ -29,17 +35,24 @@
 </template>
 
 <script>
+import AddMember from "@/components/AddMember";
 export default {
   name: "Team",
-  components: {},
+  components: {
+    AddMember,
+  },
   data() {
-    return {
-      team: [
-        { name: "Supermanzer", role: "Lord of Code" },
-        { name: "Joel", role: "He's just a guy" },
-        { name: "Felina", role: "Kind of a pain in the ass to be honest" },
-      ],
-    };
+    return {};
+  },
+  computed: {
+    team() {
+      return this.$store.state.team;
+    },
+  },
+  methods: {
+    memberAdded() {
+      this.$emit("memberAdded");
+    },
   },
 };
 </script>
